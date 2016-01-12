@@ -1,0 +1,52 @@
+html, body { 
+	height: 100%;
+ 	margin: 0; 
+ 	padding: 0; 
+}
+      
+ #map {
+ 	width:75%;
+    height:calc(100% - 0);
+    position:absolute;
+    right:16px;
+    top:50px;
+    bottom:0;
+    overflow:hidden;
+    display: flex;
+ }
+
+}
+ 
+ #main, #main>.row {
+	height:100%;
+	display: flex;
+}
+
+/*#main>.row {
+    overflow-y:scroll;
+}
+*/
+#left {
+	height:100%;
+}
+
+li {
+ 	list-style: none;
+ 	letter-spacing: 1px;
+ 	line-height: 1.4em;
+}
+
+#search-input {
+	width: 95%
+}
+
+/* Break points 
+
+Smartphones (portrait and landscape)
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px): and (-webkit-min-device-pixel-ratio: 2);
+
+iPads (portrait and landscape)
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px): and (-webkit-min-device-pixel-ratio: 1);
+
+Desktops and laptops
+@media only screen  and (min-width : 1224px)
