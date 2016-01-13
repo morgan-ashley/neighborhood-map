@@ -14,7 +14,7 @@
    				 <input id="search-input" type="search" placeholder="Whatcha lookin' for?" data-bind="textInput: userInput, event: {keyup: filterMarkers}">
    				 <h3>Neighborhood Locations</h3>
     		<ul id="list-view" data-bind="foreach: visibleLocations">
-     			 <li data-bind="text: name"></li>
+     			 <li data-bind="text: name, click: itemClick($data.marker())"></li>
    			 </ul>
   		</div> 
 	</div>
@@ -30,5 +30,4 @@
     <script src="js/app.js"></script>
 </body>
 </html>
-
-
+<!-- click listener for list-view click: $parent.clicked-->
