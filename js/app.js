@@ -1,19 +1,19 @@
 var infowindow, map, marker;
 
 var initialLocations = [{
-	"id": "49be8fe0f964a520b9541fe3",
+	"id": "44e37004f964a52042371fe3",
 	"name": "Bar Crudo",
-	"latLng": {lat: 37.775949, lng: -122.438190},
+	"latLng": {lat: 37.775685, lng: -122.438223},
   "marker": null
 }, 
 {
-	"id": "49be8fe0f964a520b9541fe3",
+	"id": "53b4dd52498eef48c82d89a5",
 	"name": "Monsieur Benjamin",
 	"latLng": {lat: 37.777504, lng: -122.423334},
   "marker": null
 }, 
 {
-	"id": "49be8fe0f964a520b9541fe3",
+	"id": "44646408f964a52026331fe3",
 	"name": "Nopa",
 	"latLng": {lat: 37.775188, lng: -122.437461},
   "marker": null
@@ -21,8 +21,8 @@ var initialLocations = [{
 {
 	"id": "43dc103ef964a520992e1fe3",
 	"name": "Absinthe Brasserie & Bar",
-	"latLng": {lat: 37.777076, lng: -122.422854},
-  "marker": null
+	"latLng": {lat: 37.777035, lng: -122.422923},
+  "marker": null  
 }, 
 {
 	"id": "49be8fe0f964a520b9541fe3",
@@ -43,27 +43,27 @@ var initialLocations = [{
   "marker": null
 }, 
 {
-	"id": "433dd180f964a52048281fe3",
+	"id": "433dd180f964a52048281fe3",  
 	"name": "Little Star Pizza",
-	"latLng": {lat: 37.777786, lng: -122.438004},
+	"latLng": {lat: 37.777539, lng: -122.438015},
   "marker": null
 }, 
 {
 	"id": "4e937514f9f44dd023514f2b",
 	"name": "Two Sisters Bar and Books",
-	"latLng": {lat: 37.776632, lng: -122.425824},
+	"latLng": {lat: 37.776363, lng: -122.425833}, 
   "marker": null
 }, 
 {
 	"id": "4feddd79d86cd6f22dc171a9",
 	"name": "The Mill",
-	"latLng": {lat: 37.776721, lng: -122.437749},
+	"latLng": {lat: 37.776469, lng: -122.437792}, 
   "marker": null
 }, 
 {
 	"id": "53644323498e8964add3b940",
 	"name": "4505 Burgers & BBQ",
-	"latLng": {lat: 37.776434, lng: -122.438231},
+	"latLng": {lat: 37.776207, lng: -122.438252}, 
   "marker": null
 }]
 
@@ -72,10 +72,17 @@ function Place(data) {
     this.latLng = data.latLng;  
     this.id= data.id;
     this.marker = ko.observable(data.marker);
+   // this.street = ko.observable();
+   // this.city = ko.observable();
   }
 
 var ViewModel = function() {
   var self = this;
+
+  /* Links list view to marker when user clicks on the list element */
+  self.itemClick = function(marker) {
+        google.maps.event.trigger(this.marker, 'click');
+      };
   
   /* Create a new Google Map object */
   self.googleMap = new google.maps.Map(document.getElementById('map'), {
@@ -87,10 +94,10 @@ var ViewModel = function() {
           position: google.maps.ControlPosition.RIGHT_BOTTOM
         }
     });
-
+  var contentSring = '<h4>' + this.name + '<h4>';
   /* Declare Google map info window */
   self.infowindow = new google.maps.InfoWindow({
-      content: "bouncy boucny"
+      content: contentSring
   });
 
   /* Creates new Place objects for each item in initalLocations array */
@@ -101,28 +108,41 @@ var ViewModel = function() {
   
   /* Build Google Map markers and place them onto the map */
   self.allLocations.forEach(function(place) {
+    
     var markerOptions = {
       map: self.googleMap,
       position: place.latLng
     };
    
     place.marker = new google.maps.Marker(markerOptions);
-
+    
     /* Add click listener to marker and open info window */
     place.marker.addListener('click', function(){
 
-      /* Set timeout animation */
-      place.marker.setAnimation(google.maps.Animation.BOUNCE);
-      setTimeout(function(){ place.marker.setAnimation(null); }, 1400)
+    /* Set timeout animation */
+    place.marker.setAnimation(google.maps.Animation.BOUNCE);
+    setTimeout(function(){ place.marker.setAnimation(null); }, 1400);
 
-      /* Open inforWindow */
-      self.infowindow.open(self.googleMap, place.marker)
+    /* Foursquare API */
+    var clientID = "AWOF0E4HV3H1H3BFIGE2KGZA5F2PMKF2UEU3ZL0QFZTEJPTP";
+    var clientSecret = "NLOWB4Z4KOE1KVJNZ5PXIZHUVS04RSQWJ5GTLDHLZO0QMMUE";
+    var foursquareURL = "https://api.foursquare.com/v2/venues/search?ll=' + place.latLng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20140806";
+    var results, name, street, city;
+    $.getJSON(foursquareURL, function(data){
+      results = data.response.venues,
+      place.name = results.name,
+      place.street = results.location.formattedAddress[0];
+      place.city = results.location.formattedAddress[1];
+       // place.formattedPhone = results.contact.formattedPhone 
 
-      /* TRYING TO BIND TO LIST VIEW */ 
-      function itemClick(marker) {
-        google.maps.event.trigger(this.marker()[-1], 'click');
-      };
-      
+    /* error response */
+    }).error(function(e){
+      //$('p').text('Woopsie Daisy! Looks like something went wrong!');
+    });
+        
+    /* Open info window and set its content*/
+    self.infowindow.setContent('<h4>' + place.name + '</h4>\n<p><b>Address:</b></p>\n<p>' + place.street + '</p>\n<p>' + place.city + '</p>');
+    self.infowindow.open(self.googleMap, place.marker);
     })
   });
 
@@ -154,14 +174,6 @@ var ViewModel = function() {
       place.marker.setVisible(true);
     });
   };
-
-/*Click listener for list view
-  self.locationClick=function(click){
-            self.userInput(click);
-            console.log(self.userInput().name);
-            // return self.currentPlace;
-          };
-*/
 }
 
 ko.applyBindings(new ViewModel());
