@@ -127,11 +127,16 @@ var ViewModel = function() {
     var foursquareURL = 'https://api.foursquare.com/v2/venues/search?limit=1&ll=' + place.latLng.lat + ',' + place.latLng.lng + '&client_id=' + clientID + '&client_secret='+ clientSecret + '&v=20140806';
     var results, name, url, street, city;
     $.getJSON(foursquareURL, function(data){
-      results = data.response.venues,
+      results = data.response.venues[0],
       place.name = results.name,
+        console.dir(results.name)
       place.url = results.url,
-      place.street = results.location.formattedAddress[0],
-      place.city = results.location.formattedAddress[1]
+        console.dir(results.url)
+      place.street = results[0].location.formattedAddress[0],
+       console.dir(results[0].location.formattedAddress[0])
+      place.city = results[0].location.formattedAddress[1]
+        console.dir(results[0].location.formattedAddress[1])
+
        // place.formattedPhone = results.contact.formattedPhone 
 
     /* error response */
