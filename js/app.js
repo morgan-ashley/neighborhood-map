@@ -96,9 +96,7 @@ var ViewModel = function() {
     });
   var contentSring = '<h4>' + this.name + '<h4>';
   /* Declare Google map info window */
-  self.infowindow = new google.maps.InfoWindow({
-      content: contentSring
-  });
+  self.infowindow = new google.maps.InfoWindow({});
 
   /* Creates new Place objects for each item in initalLocations array */
   self.allLocations = [];
@@ -126,13 +124,14 @@ var ViewModel = function() {
     /* Foursquare API */
     var clientID = "AWOF0E4HV3H1H3BFIGE2KGZA5F2PMKF2UEU3ZL0QFZTEJPTP";
     var clientSecret = "NLOWB4Z4KOE1KVJNZ5PXIZHUVS04RSQWJ5GTLDHLZO0QMMUE";
-    var foursquareURL = "https://api.foursquare.com/v2/venues/search?ll=' + place.latLng + '&client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20140806";
-    var results, name, street, city;
+    var foursquareURL = 'https://api.foursquare.com/v2/venues/search?limit=1&ll=' + place.latLng.lat + ',' + place.latLng.lng + '&client_id=' + clientID + '&client_secret='+ clientSecret + '&v=20140806';
+    var results, name, url, street, city;
     $.getJSON(foursquareURL, function(data){
       results = data.response.venues,
       place.name = results.name,
-      place.street = results.location.formattedAddress[0];
-      place.city = results.location.formattedAddress[1];
+      place.url = results.url,
+      place.street = results.location.formattedAddress[0],
+      place.city = results.location.formattedAddress[1]
        // place.formattedPhone = results.contact.formattedPhone 
 
     /* error response */
@@ -140,8 +139,8 @@ var ViewModel = function() {
       //$('p').text('Woopsie Daisy! Looks like something went wrong!');
     });
         
-    /* Open info window and set its content*/
-    self.infowindow.setContent('<h4>' + place.name + '</h4>\n<p><b>Address:</b></p>\n<p>' + place.street + '</p>\n<p>' + place.city + '</p>');
+    /* Open info window and set its content */
+    self.infowindow.setContent('<h4>' + place.name + '</h4>\n<a href=' + place.url + '>' + place.url + '</a>\n<p><b>Address:</b></p>\n<p>' + place.street + '</p>\n<p>' + place.city + '</p>');
     self.infowindow.open(self.googleMap, place.marker);
     })
   });
