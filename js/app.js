@@ -94,9 +94,11 @@ var ViewModel = function() {
           position: google.maps.ControlPosition.RIGHT_BOTTOM
         }
     });
-  var contentSring = '<h4>' + this.name + '<h4>';
+  var contentString;
   /* Declare Google map info window */
-  self.infowindow = new google.maps.InfoWindow({});
+  self.infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
 
   /* Creates new Place objects for each item in initalLocations array */
   self.allLocations = [];
@@ -128,24 +130,26 @@ var ViewModel = function() {
     var results, name, url, street, city;
     $.getJSON(foursquareURL, function(data){
       results = data.response.venues[0],
-      place.name = results.name,
-        console.dir(results.name)
-      place.url = results.url,
-        console.dir(results.url)
-      place.street = results[0].location.formattedAddress[0],
-       console.dir(results[0].location.formattedAddress[0])
-      place.city = results[0].location.formattedAddress[1]
-        console.dir(results[0].location.formattedAddress[1])
+      //place.name = results.name,
+      place.name = results.hasOwnProperty('name') ? results.name : '',
+        console.dir(results.name),
+       place.url = results.hasOwnProperty('url') ? results.url : '',
+        console.dir(results.url),
+      //place.street = results.location.formattedAddress[0],
+      place.city = results.hasOwnProperty('formattedAddress') ? results.location.formattedAddress[0] : '',
+       console.dir(results.location.formattedAddress[0]),
+      place.street = results.hasOwnProperty('formattedAddress') ? results.location.formattedAddress[1] : '',
 
-       // place.formattedPhone = results.contact.formattedPhone 
-
+      //place.city = results.location.formattedAddress[1]
+        console.dir(results.location.formattedAddress[1])
+        
     /* error response */
     }).error(function(e){
       //$('p').text('Woopsie Daisy! Looks like something went wrong!');
     });
-        
+     contentString = '<h4>' + place.name + '</h4>\n<p><b>Address:</b></p>\n<p>' + place.street + '</p>\n<p>' + place.city + '</p><a href= ' + place.url + '>' + place.url + '</a>';   
     /* Open info window and set its content */
-    self.infowindow.setContent('<h4>' + place.name + '</h4>\n<a href=' + place.url + '>' + place.url + '</a>\n<p><b>Address:</b></p>\n<p>' + place.street + '</p>\n<p>' + place.city + '</p>');
+    self.infowindow.setContent(contentString);
     self.infowindow.open(self.googleMap, place.marker);
     })
   });
