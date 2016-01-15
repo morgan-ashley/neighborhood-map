@@ -78,7 +78,110 @@ function Place(data) {
 
 var ViewModel = function() {
   var self = this;
-
+  var styles = [
+  {
+    "featureType": "landscape",
+    "stylers": [
+      {
+        "hue": "#00FF8A"
+      },
+      {
+        "saturation": -27.272727272727266
+      },
+      {
+        "lightness": -16.39215686274511
+      },
+      {
+        "gamma": 1
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "stylers": [
+      {
+        "hue": "#FFB200"
+      },
+      {
+        "saturation": 100
+      },
+      {
+        "lightness": -2.521568627450975
+      },
+      {
+        "gamma": 1
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "stylers": [
+      {
+        "hue": "#FBFF00"
+      },
+      {
+        "saturation": 0
+      },
+      {
+        "lightness": 0
+      },
+      {
+        "gamma": 1
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "stylers": [
+      {
+        "hue": "#00FF8A"
+      },
+      {
+        "saturation": -27.272727272727266
+      },
+      {
+        "lightness": -8.39215686274511
+      },
+      {
+        "gamma": 1
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "stylers": [
+      {
+        "hue": "#FF0300"
+      },
+      {
+        "saturation": -100
+      },
+      {
+        "lightness": 148
+      },
+      {
+        "gamma": 1
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "stylers": [
+      {
+        "hue": "#FFCD00"
+      },
+      {
+        "saturation": 100
+      },
+      {
+        "lightness": 19.84313725490196
+      },
+      {
+        "gamma": 1
+      }
+    ]
+  }
+];
   /* Links list view to marker when user clicks on the list element */
   self.itemClick = function(marker) {
         google.maps.event.trigger(this.marker, 'click');
@@ -87,7 +190,8 @@ var ViewModel = function() {
   /* Create a new Google Map object */
   self.googleMap = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.776859, lng: -122.431403},
-    zoom: 16,    
+    zoom: 16,
+    styles: styles,    
     zoomControl: true,
       zoomControlOptions: {
           style: google.maps.ZoomControlStyle.LARGE,
@@ -119,38 +223,38 @@ var ViewModel = function() {
     /* Add click listener to marker and open info window */
     place.marker.addListener('click', function(){
 
-    /* Set timeout animation */
-    place.marker.setAnimation(google.maps.Animation.BOUNCE);
-    setTimeout(function(){ place.marker.setAnimation(null); }, 1400);
+      /* Set timeout animation */
+      place.marker.setAnimation(google.maps.Animation.BOUNCE);
+      setTimeout(function(){ place.marker.setAnimation(null); }, 2150);
 
-    /* Foursquare API */
-    var clientID = "AWOF0E4HV3H1H3BFIGE2KGZA5F2PMKF2UEU3ZL0QFZTEJPTP";
-    var clientSecret = "NLOWB4Z4KOE1KVJNZ5PXIZHUVS04RSQWJ5GTLDHLZO0QMMUE";
-    var foursquareURL = 'https://api.foursquare.com/v2/venues/search?limit=1&ll=' + place.latLng.lat + ',' + place.latLng.lng + '&client_id=' + clientID + '&client_secret='+ clientSecret + '&v=20140806';
-    var results, name, url, street, city;
-    $.getJSON(foursquareURL, function(data){
-      results = data.response.venues[0],
-      //place.name = results.name,
-      place.name = results.hasOwnProperty('name') ? results.name : '',
-        console.dir(results.name),
-       place.url = results.hasOwnProperty('url') ? results.url : '',
-        console.dir(results.url),
-      //place.street = results.location.formattedAddress[0],
-      place.city = results.hasOwnProperty('formattedAddress') ? results.location.formattedAddress[0] : '',
-       console.dir(results.location.formattedAddress[0]),
-      place.street = results.hasOwnProperty('formattedAddress') ? results.location.formattedAddress[1] : '',
-
-      //place.city = results.location.formattedAddress[1]
-        console.dir(results.location.formattedAddress[1])
-        
-    /* error response */
-    }).error(function(e){
-      //$('p').text('Woopsie Daisy! Looks like something went wrong!');
-    });
-     contentString = '<h4>' + place.name + '</h4>\n<p><b>Address:</b></p>\n<p>' + place.street + '</p>\n<p>' + place.city + '</p><a href= ' + place.url + '>' + place.url + '</a>';   
-    /* Open info window and set its content */
-    self.infowindow.setContent(contentString);
-    self.infowindow.open(self.googleMap, place.marker);
+      /* Foursquare API */
+      var clientID = "AWOF0E4HV3H1H3BFIGE2KGZA5F2PMKF2UEU3ZL0QFZTEJPTP";
+      var clientSecret = "NLOWB4Z4KOE1KVJNZ5PXIZHUVS04RSQWJ5GTLDHLZO0QMMUE";
+      var foursquareURL = 'https://api.foursquare.com/v2/venues/search?limit=1&ll=' + place.latLng.lat + ',' + place.latLng.lng + '&client_id=' + clientID + '&client_secret='+ clientSecret + '&v=20140806';
+      var results, name, url, street, city;
+     
+      $.getJSON(foursquareURL, function(data){
+        results = data.response.venues[0],
+        //place.name = results.name,
+        place.name = results.hasOwnProperty('name') ? results.name : '';
+         console.dir(results.name),
+        place.url= results.hasOwnProperty('url') ? results.url : '';
+          console.dir(results.url),
+        //place.street = results.location.formattedAddress[0],
+        place.city = results.hasOwnProperty('formattedAddress') ? results.location.formattedAddress[0] : '',
+         console.dir(results.location.formattedAddress[0]),
+         //place.city = results.location.formattedAddress[1]
+        place.street = results.hasOwnProperty('formattedAddress') ? results.location.formattedAddress[1] : '',
+          console.dir(results.location.formattedAddress[1])
+          
+      /* error response */
+      }).error(function(e){
+        $('p').text('Woopsie Daisy! Looks like something went wrong!');
+      });
+       contentString = '<h4>' + place.name + '</h4>\n<p><b>Address:</b></p>\n<p>' + place.street + '</p>\n<p>' + place.city + '</p><a href= ' + place.url + '>' + place.url + '</a>';   
+      /* Open info window and set its content */
+      self.infowindow.setContent(contentString);
+      self.infowindow.open(self.googleMap, place.marker);
     })
   });
 

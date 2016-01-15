@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Neighborhood Map</title>
     <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Cabin+Sketch|PT+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="style/style.css" />
 </head>
 <body>
@@ -12,7 +13,7 @@
 		<div class="row">
 			<div class="col-xs-3">
    				 <input id="search-input" type="search" placeholder="Whatcha lookin' for?" data-bind="textInput: userInput, event: {keyup: filterMarkers}">
-   				 <h3>Neighborhood Locations</h3>
+   				 <h1>Neighborhood Map</h1>
     		<ul id="list-view" data-bind="foreach: visibleLocations">
      			 <li data-bind="text: name, click: $root.itemClick"></li>
    			 </ul>
