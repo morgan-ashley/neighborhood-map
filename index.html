@@ -2,43 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Neighborhood Map</title>
     <link rel="stylesheet" href="style/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Cabin+Sketch|PT+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="style/style.css" />
 </head>
 <body>
- <h1>NeighborHood Map</h1>
+<h1>NeighborHood Map</h1>
 <div id="map"></div>
 	<div class="container-fluid" id="main">
 		<div class="row">
 			<div class="col-xs-3">
-      <div class = "listNav">
-     <!-- <p class= "navicon">&#9776;</p> -->
-      </div>
-   			<input id="search-input" type="search" placeholder="Whatcha lookin' for?" data-bind="textInput: userInput, event: {keyup: filterMarkers}">
-   				<ul class ="listDrop" id="list-view" data-bind="foreach: visibleLocations">
-     			 <li data-bind="text: name, click: $root.itemClick"></li>
-   			 </ul>
-  	</div> 
-	</div>
+      <div class="listNav">
+        </div>
+   			  <input id="search-input" type="search" placeholder="Whatcha lookin' for?" data-bind="textInput: userInput, event: {keyup: filterMarkers}">
+   				 <ul class ="listDrop" id="list-view" data-bind="foreach: visibleLocations">
+     			  <li data-bind="text: name, click: $root.itemClick"></li>
+   			  </ul>
+  	   </div> 
+	 </div>
 </div>
-
 <footer>
-<a href =https://foursquare.com/ target="_blank"><img src = "poweredbyfs.png"></a>
+  <a href="https://foursquare.com/" target="_blank"><img src="poweredbyfs.png" alt="foursquare logo"></a>
 </footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDLgHt7Ekx7koMC2J8KSzx_LSdQ-Hfqd4" type="text/javascript">
-    //<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDLgHt7Ekx7koMC2J8KSzx_LSdQ-Hfqd4
-//&callback=myMap">
-    </script> 
-<script type="text/javascript">
-  $('#search-input').on('click', function(){
-  $('.listDrop').slideToggle(500);
- })
-</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDLgHt7Ekx7koMC2J8KSzx_LSdQ-Hfqd4" type="text/javascript">
+  </script> 
+    <script type="text/javascript">
+      $('#search-input').on('click', function(){
+      $('.listDrop').slideToggle(500);
+      })
+    </script>
   <script type='text/javascript' src='js/knockout.js'></script>
-    <script src="js/app.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
-<!-- click listener for list-view click: $parent.clicked-->
