@@ -1,3 +1,4 @@
+
 html, body { 
 	height: 100%;
  	margin: 0; 
@@ -6,17 +7,26 @@ html, body {
 h1 {
     font-family: 'Cabin Sketch', Helvetica;
     color: #FF6F69;
+    display: flex;
+    font-size: 28px;
 } 
 
 li {
     font-family: 'PT Sans', sans-serif;
     font-size: 1.4em;
     padding-top: 0.1em;
-    color: #79A691;
+    color: #000;
+    list-style: none;
+    letter-spacing: 1px;
+    line-height: 1.4em;
 } 
 
- #map {
+#map {
  	width:75%;
+    height: -webkit-calc(100% - 0);
+    height: -moz-calc(100% - 0);
+    height: -ms-calc(100% - 0);
+    height: -o-calc(100% - 0);
     height:calc(100% - 0);
     position:absolute;
     right:16px;
@@ -25,41 +35,130 @@ li {
     overflow:hidden;
     display: flex;
     border: 3px solid #FF6F69;
- }
+    margin-bottom: 20px;
+    max-width: 80%
+    flex-wrap: wrap;
+}
 
 }
  
- #main, #main>.row {
+#main, #main>.row {
 	height:100%;
 	display: flex;
+
 }
 
-/*#main>.row {
+#main>.row {
     overflow-y:scroll;
+    
+}
+
+.listNav {
+    width: 100%;
+    margin: 10px 25px;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.navicon {
+    font-size: 40px;
+    float: left;
+    margin: 10px 10px;
+}
+
+.listDrop {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    display: none;
+}
+
+.listDrop li{
+    font-size: 20px;
+    padding: 15px;
+    width: 90%;
+}
+
+input[type=search] {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #000;
+}
+
+.listDrop li:hover{
+    background: #FF6F69;
+    color: #FFF;
+}
+#search-input {
+	width: 90%;
+}
+
+img{
+    width: 40%;
+    height: 40%;
+}
+footer {
+    position: absolute;
+    bottom:0;
+    left: 0;
 }
 */
-#left {
-	height:100%;
-}
 
-li {
- 	list-style: none;
- 	letter-spacing: 1px;
- 	line-height: 1.4em;
-}
-
-#search-input {
-	width: 95%
-}
-
-/* Break points 
+/* Break points */
 
 /* Smartphones (portrait and landscape) */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px): and (-webkit-min-device-pixel-ratio: 2); 
+
+@media screen and (min-width : 0px) and (max-width : 480px){
+    h1{
+        font-size: 0.5em;
+        float: left;
+        margin-right: 50px;
+        text-align: center;
+        display: flex;
+    }
+
+   .listDrop li{
+        font-size: 0.4em;
+    }
+    #search-input{
+        width: 80%;
+        font-size: 0.4em;
+    }
+    img{
+        width: 20%;
+        height: 20%;
+    }
+    footer {
+        position: absolute;
+        bottom:0;
+        left: 0;
+    }
+} 
+@media screen and (min-width : 768px) and (max-width : 480px){
+
+
+
 
 /* iPads (portrait and landscape) */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px): and (-webkit-min-device-pixel-ratio: 1);
+@media screen and (min-width : ){
+
+
 
 /* Desktops and laptops */
-@media only screen  and (min-width : 1224px)
+
+@media only screen  and (max-width : 1180px){
+    h1{
+        font-size: 2em;
+    }
+
+    li {
+        font-size: 1em;
+    }
+
+}
 
