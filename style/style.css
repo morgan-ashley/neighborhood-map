@@ -8,9 +8,10 @@ h1 {
     font-family: 'Cabin Sketch', Helvetica;
     color: #FF6F69;
     display: flex;
-    font-size: 28px;
+    font-size: 78px;
+    text-align: center;
+    margin: 0 auto;
 } 
-
 li {
     font-family: 'PT Sans', sans-serif;
     font-size: 1.4em;
@@ -20,7 +21,6 @@ li {
     letter-spacing: 1px;
     line-height: 1.4em;
 } 
-
 #map {
  	width:75%;
     height: -webkit-calc(100% - 0);
@@ -30,7 +30,7 @@ li {
     height:calc(100% - 0);
     position:absolute;
     right:16px;
-    top:50px;
+    top:90px;
     bottom:0;
     overflow:hidden;
     display: flex;
@@ -39,32 +39,26 @@ li {
     max-width: 80%
     flex-wrap: wrap;
 }
+} /* While I was tidying up my code, as soon as I delete this bracket, my search bar collapses */
+/* any idea how to fix this or why it's happening? I have not encounterd this problem before */
 
-}
- 
 #main, #main>.row {
 	height:100%;
 	display: flex;
-
 }
-
 #main>.row {
-    overflow-y:scroll;
-    
+    overflow-y:scroll;   
 }
-
 .listNav {
     width: 100%;
     margin: 10px 25px;
     font-family: 'PT Sans', sans-serif;
 }
-
 .navicon {
     font-size: 40px;
     float: left;
     margin: 10px 10px;
 }
-
 .listDrop {
     padding-left: 0;
     margin: 0;
@@ -72,13 +66,11 @@ li {
     text-align: center;
     display: none;
 }
-
 .listDrop li{
     font-size: 20px;
     padding: 15px;
     width: 90%;
 }
-
 input[type=search] {
   -webkit-transition: all 0.30s ease-in-out;
   -moz-transition: all 0.30s ease-in-out;
@@ -89,7 +81,6 @@ input[type=search] {
   margin: 5px 1px 3px 0px;
   border: 1px solid #000;
 }
-
 .listDrop li:hover{
     background: #FF6F69;
     color: #FFF;
@@ -97,7 +88,6 @@ input[type=search] {
 #search-input {
 	width: 90%;
 }
-
 img{
     width: 40%;
     height: 40%;
@@ -107,27 +97,22 @@ footer {
     bottom:0;
     left: 0;
 }
-*/
 
-/* Break points */
-
+/
 /* Smartphones (portrait and landscape) */
-
 @media screen and (min-width : 0px) and (max-width : 480px){
     h1{
-        font-size: 0.5em;
+        font-size: 0.3em;
         float: left;
         margin-right: 50px;
         text-align: center;
-        display: flex;
     }
-
    .listDrop li{
-        font-size: 0.4em;
+        font-size: 0.2em;
     }
     #search-input{
         width: 80%;
-        font-size: 0.4em;
+        font-size: 0.3em;
     }
     img{
         width: 20%;
@@ -139,26 +124,38 @@ footer {
         left: 0;
     }
 } 
-@media screen and (min-width : 768px) and (max-width : 480px){
 
-
-
-
-/* iPads (portrait and landscape) */
-@media screen and (min-width : ){
-
-
-
-/* Desktops and laptops */
-
-@media only screen  and (max-width : 1180px){
-    h1{
+/* Tablets (portrait and landscape) */
+@media screen and (min-width : 480px) and (max-width : 800px){
+    h1 {
         font-size: 2em;
     }
+    .listDrop li{
+        font-size: 0.7em;
+    }
+    #search-input{
+        width: 80%;
+        font-size: 0.7em;
+    }
+    img{
+        width: 20%;
+        height: 20%;
+    }
+    footer {
+        position: absolute;
+        bottom:0;
+        left: 0;
+    }
+}
 
-    li {
+/* Desktops and laptops */
+@media screen and (min-width : 780px) and (max-width : 1180px){
+    h1{
+        font-size: 2.5em;
+        margin-left: 5px;
+    }
+    .listDrop li{
         font-size: 1em;
     }
-
 }
 

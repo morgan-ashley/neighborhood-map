@@ -35,13 +35,13 @@ var initialLocations = [{
 {
 	"name": "4505 Burgers & BBQ",
 	"latLng": {lat: 37.776207, lng: -122.438252},
-}]
+}];
 
 function Place(data) {
     this.name = data.name;
     this.latLng = data.latLng;  
     this.marker = ko.observable(data.marker);
-  }
+}
 
 var ViewModel = function() {
   var self = this;
@@ -98,7 +98,7 @@ var styles = [
   /* Links list view to marker when user clicks on the list element */
   self.itemClick = function(marker) {
         google.maps.event.trigger(this.marker, 'click');
-      };
+  };
 
   /* Create a new Google Map object */
   self.googleMap = new google.maps.Map(document.getElementById('map'), {
@@ -106,11 +106,11 @@ var styles = [
     zoom: 16,
     styles: styles,    
     zoomControl: true,
-      zoomControlOptions: {
-          style: google.maps.ZoomControlStyle.LARGE,
-          position: google.maps.ControlPosition.RIGHT_BOTTOM
-        }
-    });
+    zoomControlOptions: {
+      style: google.maps.ZoomControlStyle.LARGE,
+      position: google.maps.ControlPosition.RIGHT_BOTTOM
+     }
+  });
 
 
   var contentString;
@@ -145,25 +145,15 @@ var styles = [
         console.log('AJAX is working!');
         results = data.response.venues[0],
         place.name = results.name,
-       // place.name = results.hasOwnProperty('name') ? results.name : '';
-         //console.dir(results.name),
         place.url= results.hasOwnProperty('url') ? results.url : '';
-          //console.dir(results.url),
         place.street = results.location.formattedAddress[0],
-        //place.city = results.hasOwnProperty('formattedAddress') ? results.location.formattedAddress[0] : '',
-         //console.dir(results.location.formattedAddress[0]),
-         place.city = results.location.formattedAddress[1]
-        //place.street = results.hasOwnProperty('formattedAddress') ? results.location.formattedAddress[1] : '',
-          //console.dir(results.location.formattedAddress[1])
-          
-      /* error response */
-      }).error(function(e){
-        $('p').text('Woopsie Daisy! Looks like something went wrong!');
-      });
+        place.city = results.location.formattedAddress[1]
+  
+    /* error response */
+    }).error(function() { alert("Woopsie Daisy! Looks like something went wrong!");})
     
     /* Add click listener to marker and open info window */
     place.marker.addListener('click', function(){
-      console.log("hi, marker click");
 
       /* Set timeout animation */
       place.marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -172,7 +162,6 @@ var styles = [
       
        contentString = '<h4>' + place.name + '</h4>\n<p>' + place.street + '</p>\n<p>' + place.city + '</p><a href= ' + place.url + '>' + place.url + '</a>';   
       /* Open info window and set its content */
-      console.log('opening infowindows');
       self.infowindow.setContent(contentString);
       self.infowindow.open(self.googleMap, place.marker);
 
@@ -208,5 +197,4 @@ var styles = [
     });
   };
 }
-
 ko.applyBindings(new ViewModel());
