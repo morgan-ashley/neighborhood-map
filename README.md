@@ -1,5 +1,7 @@
 #Project 5- Neighborhood Map#
-- - - - 
+
+A single page application featuring the Alamo Square neighborhood of San Francisco, CA. This application includes map markers that identidy a few of the popular restaurants in the neighborhood. Users can easily search through the list, through simple browsing function.
+
 ###References###
 
 * http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
