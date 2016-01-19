@@ -9,16 +9,16 @@
     <link rel="stylesheet" type="text/css" href="style/style.css" />
 </head>
 <body>
-<h1>NeighborHood Map</h1>
+<h1>Neighborhood Map</h1>
 <div id="map"></div>
-	<div class="container-fluid" id="main">
-		<div class="row">
-		  <div class="col-xs-3">
+	 <div class="container-fluid" id="main">
+		  <div class="row">
+		    <div class="col-xs-3">
         <div class="listNav">
         </div>
-   			<input id="search-input" type="search" placeholder="Whatcha lookin' for?" data-bind="textInput: userInput, event: {keyup: filterMarkers}">
-   			<ul class ="listDrop" id="list-view" data-bind="foreach: visibleLocations">
-     			  <li data-bind="text: name, click: $root.itemClick"></li>
+   			<input id="search-input" type="search" placeholder="Whatcha lookin' for?" data-bind="textInput: userInput, event: {keyup: filterMarkers}" />
+        <ul class ="listDrop" id="list-view" data-bind="foreach: visibleLocations">
+     			<li data-bind="text: name, click: $root.itemClick"></li>
    			</ul>
   	 </div> 
   </div>
