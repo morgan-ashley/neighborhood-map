@@ -2,6 +2,8 @@
 
 A single page application featuring the Alamo Square neighborhood of San Francisco, CA. This application includes map markers that identidy a few of the popular restaurants in the neighborhood. Users can easily search through the list, through simple browsing function.
 
+In order to run the Neighborhood Map application, clone the repository to your local machine, and drag the index.hmtl file to the browsers window. 
+
 ###References###
 
 * http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/

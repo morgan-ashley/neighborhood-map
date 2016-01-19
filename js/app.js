@@ -6,8 +6,8 @@ var initialLocations = [{
 },  
 {
   "name": "Bar Crudo",
-  "latLng": {lat: 37.775685, lng: -122.438223},
-}, 
+  "latLng": {lat: 37.775710796220146, lng: -122.438067580171},
+},
 {
   "name": "Barrel Head Brewhouse",
   "latLng": {lat: 37.775676, lng: -122.446110},
@@ -47,53 +47,53 @@ var ViewModel = function() {
   var self = this;
   
 /* Styles for Google Map */  
-var styles = [
-  {
-    "featureType": "landscape",
-    "stylers": [
-      {"hue": "#00FF8A"},
-      {"saturation": -27.272727272727266},
-      {"lightness": -16.39215686274511},
-      {"gamma": 1}
-    ]
-  },
-  {
-    "featureType": "road.highway",
-    "stylers": [
-      {"hue": "#FF0D00"},
-      {"saturation": 100},
-      {"lightness": -12.721568627450978},
-      {"gamma": 1}
-    ]
-  },
-  {
-    "featureType": "road.local",
-    "stylers": [
-      {"hue": "#FFD000"},
-      {"saturation": 100},
-      {"lightness": 19.84313725490196},
-      {"gamma": 1}
-    ]
-  },
-  {
-    "featureType": "water",
-    "stylers": [
-      {"hue": "#FF0300"},
-      {"saturation": -100},
-      {"lightness": 148},
-      {"gamma": 1}
-    ]
-  },
-  {
-    "featureType": "poi",
-    "stylers": [
-      {"hue": "#00FF23"},
-      {"saturation": -25.806451612903203},
-      {"lightness": 3.3725490196078454},
-      {"gamma": 1}
-    ]
-  }
-];
+  var styles = [
+    {
+      "featureType": "landscape",
+      "stylers": [
+        {"hue": "#00FF8A"},
+        {"saturation": -27.272727272727266},
+        {"lightness": -16.39215686274511},
+        {"gamma": 1}
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "stylers": [
+        {"hue": "#FF0D00"},
+        {"saturation": 100},
+        {"lightness": -12.721568627450978},
+        {"gamma": 1}
+      ]
+    },
+    {
+      "featureType": "road.local",
+      "stylers": [
+        {"hue": "#FFD000"},
+        {"saturation": 100},
+        {"lightness": 19.84313725490196},
+        {"gamma": 1}
+      ]
+    },
+    {
+      "featureType": "water",
+      "stylers": [
+        {"hue": "#FF0300"},
+        {"saturation": -100},
+        {"lightness": 148},
+        {"gamma": 1}
+      ]
+    },
+    {
+      "featureType": "poi",
+      "stylers": [
+        {"hue": "#00FF23"},
+        {"saturation": -25.806451612903203},
+        {"lightness": 3.3725490196078454},
+        {"gamma": 1}
+      ]
+    }
+  ];
 
   /* Links list view to marker when user clicks on the list element */
   self.itemClick = function(marker) {
@@ -111,7 +111,6 @@ var styles = [
       position: google.maps.ControlPosition.RIGHT_BOTTOM
      }
   });
-
 
   var contentString;
   /* Declare Google map info window */
@@ -150,7 +149,7 @@ var styles = [
         place.city = results.location.formattedAddress[1]
   
     /* error response */
-    }).error(function() { alert("Woopsie Daisy! Looks like something went wrong!");})
+    }).fail(function() { alert("Woopsie Daisy! Looks like something went wrong!");})
     
     /* Add click listener to marker and open info window */
     place.marker.addListener('click', function(){
@@ -160,7 +159,7 @@ var styles = [
       setTimeout(function(){ place.marker.setAnimation(null); }, 1400);
 
       
-       contentString = '<h4>' + place.name + '</h4>\n<p>' + place.street + '</p>\n<p>' + place.city + '</p><a href= ' + place.url + '>' + place.url + '</a>';   
+      contentString = '<h4>' + place.name + '</h4>\n<p>' + place.street + '</p>\n<p>' + place.city + '</p><a href= ' + place.url + '>' + place.url + '</a>';   
       /* Open info window and set its content */
       self.infowindow.setContent(contentString);
       self.infowindow.open(self.googleMap, place.marker);
@@ -178,7 +177,7 @@ var styles = [
   
   /* Keeps track of our users input and is bound to 'textInput: userInput' in index.html*/
   self.userInput = ko.observable('');
-  
+
   // filterMarkers looks at the userInput to see if it matches any characters in our locaions and markers.
   // If a string is found with a match, it is still visible while all other markers are removed 
   self.filterMarkers = function() {
@@ -197,4 +196,7 @@ var styles = [
     });
   };
 }
+function myMap() { 
 ko.applyBindings(new ViewModel());
+}
+

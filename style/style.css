@@ -36,15 +36,10 @@ li {
     display: flex;
     border: 3px solid #FF6F69;
     margin-bottom: 20px;
-    max-width: 80%
-    flex-wrap: wrap;
+    max-width: 80%;
 }
-} /* While I was tidying up my code, as soon as I delete this bracket, my search bar collapses */
-/* any idea how to fix this or why it's happening? I have not encounterd this problem before */
-
 #main, #main>.row {
 	height:100%;
-	display: flex;
 }
 #main>.row {
     overflow-y:scroll;   
@@ -54,17 +49,19 @@ li {
     margin: 10px 25px;
     font-family: 'PT Sans', sans-serif;
 }
+/* 
 .navicon {
     font-size: 40px;
     float: left;
     margin: 10px 10px;
 }
+*/
 .listDrop {
     padding-left: 0;
     margin: 0;
     list-style: none;
     text-align: center;
-    display: none;
+    
 }
 .listDrop li{
     font-size: 20px;
@@ -98,9 +95,8 @@ footer {
     left: 0;
 }
 
-/
 /* Smartphones (portrait and landscape) */
-@media screen and (min-width : 0px) and (max-width : 480px){
+@media screen and (max-width : 350px){
     h1{
         font-size: 0.3em;
         float: left;
@@ -108,11 +104,11 @@ footer {
         text-align: center;
     }
    .listDrop li{
-        font-size: 0.2em;
+        font-size: 8px;
     }
     #search-input{
         width: 80%;
-        font-size: 0.3em;
+        font-size: 5px;
     }
     img{
         width: 20%;
@@ -126,12 +122,12 @@ footer {
 } 
 
 /* Tablets (portrait and landscape) */
-@media screen and (min-width : 480px) and (max-width : 800px){
+@media screen and (min-width : 360px) and (max-width : 800px){
     h1 {
         font-size: 2em;
     }
     .listDrop li{
-        font-size: 0.7em;
+        font-size: 0.5em;
     }
     #search-input{
         width: 80%;
