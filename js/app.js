@@ -1,40 +1,40 @@
 var infowindow, map, marker;
 
 var initialLocations = [{
-  "name": "Nopa",
-  "latLng": {lat: 37.775188, lng: -122.437461},
+    "name": "Nopa",
+    "latLng": {lat: 37.775188, lng: -122.437461},
 },  
 {
-  "name": "Bar Crudo",
-  "latLng": {lat: 37.775710796220146, lng: -122.438067580171},
+    "name": "Bar Crudo",
+    "latLng": {lat: 37.775710796220146, lng: -122.438067580171},
 },
 {
-  "name": "Barrel Head Brewhouse",
-  "latLng": {lat: 37.775676, lng: -122.446110},
+    "name": "Barrel Head Brewhouse",
+    "latLng": {lat: 37.775676, lng: -122.446110},
 },
 {
-	"name": "Chile Pies & Ice Cream",
-	"latLng": {lat: 37.776578, lng: -122.441692},
+	 "name": "Chile Pies & Ice Cream",
+	 "latLng": {lat: 37.776578, lng: -122.441692},
 }, 
 {  
-	"name": "Little Star Pizza",
-	"latLng": {lat: 37.777539, lng: -122.438015},
+	 "name": "Little Star Pizza",
+	 "latLng": {lat: 37.777539, lng: -122.438015},
 },
 {
-  "name": "Bistro Central Parc",
-  "latLng": {lat:  37.775013, lng: -122.444338},
+    "name": "Bistro Central Parc",
+    "latLng": {lat:  37.775013, lng: -122.444338},
 },  
 {
-	"name": "The Mill",
-	"latLng": {lat: 37.776469, lng: -122.437792}, 
+	 "name": "The Mill",
+	 "latLng": {lat: 37.776469, lng: -122.437792}, 
 }, 
 {
-  "name": "Nopalito",
-  "latLng": {lat: 37.773564, lng: -122.438857},
+    "name": "Nopalito",
+    "latLng": {lat: 37.773470000054516, lng: -122.43910714054726},
 }, 
 {
-	"name": "4505 Burgers & BBQ",
-	"latLng": {lat: 37.776207, lng: -122.438252},
+	 "name": "4505 Burgers & BBQ",
+	 "latLng": {lat: 37.776207, lng: -122.438252},
 }];
 
 function Place(data) {
@@ -141,7 +141,6 @@ var ViewModel = function() {
       var results, name, url, street, city;
      
       $.getJSON(foursquareURL, function(data){
-        console.log('AJAX is working!');
         results = data.response.venues[0],
         place.name = results.name,
         place.url= results.hasOwnProperty('url') ? results.url : '';
@@ -162,7 +161,8 @@ var ViewModel = function() {
       contentString = '<h4>' + place.name + '</h4>\n<p>' + place.street + '</p>\n<p>' + place.city + '</p><a href= ' + place.url + '>' + place.url + '</a>';   
       /* Open info window and set its content */
       self.infowindow.setContent(contentString);
-      self.infowindow.open(self.googleMap, place.marker);
+      self.infowindow.open(self.googleMap, place.marker)
+      setTimeout(function() {self.infowindow.open(null);}, 7000);
 
     })
   });
@@ -198,5 +198,10 @@ var ViewModel = function() {
 }
 function myMap() { 
 ko.applyBindings(new ViewModel());
+}
+function googleError(){
+  if (typeof(google) == null){
+    alert('Google maps is currerntly unavailable')
+  }
 }
 
