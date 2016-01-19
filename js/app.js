@@ -31,10 +31,6 @@ var initialLocations = [{
 {
     "name": "Nopalito",
     "latLng": {lat: 37.773470000054516, lng: -122.43910714054726},
-}, 
-{
-	 "name": "4505 Burgers & BBQ",
-	 "latLng": {lat: 37.776207, lng: -122.438252},
 }];
 
 function Place(data) {
