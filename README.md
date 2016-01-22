@@ -19,3 +19,8 @@ In order to run the Neighborhood Map application, clone the repository to your l
 * knockout.js
 * Google Maps API
 * Foursquare API
+
+###TO-DO###
+* Implement build process(Gulp)
+* Toggle hamburger menu on mobile(portrait mode)
+* Restyle mobile layout
