@@ -14,13 +14,13 @@ In order to run the Neighborhood Map application, clone the repository to your l
 
 ###Frameworks and APIS###
 * HTML, CSS, JS
-* JQuery
+* jQuery
 * Bootstrap
 * knockout.js
 * Google Maps API
 * Foursquare API
 
-###TO-DO###
+###To-Do###
 * Implement build process(Gulp)
 * Toggle hamburger menu on mobile(portrait mode)
 * Restyle mobile layout
