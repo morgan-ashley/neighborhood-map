@@ -200,5 +200,3 @@ function googleError(){
     alert('Google maps is currerntly unavailable');
   }
 }
-
-
