@@ -144,7 +144,7 @@ var ViewModel = function() {
         place.city = results.location.formattedAddress[1]
   
     /* error response */
-    }).fail(function() { alert("Woopsie Daisy! Looks like something went wrong!");})
+    }).fail(function() { alert("Woopsie Daisy! Looks like something went wrong!");});
     
     /* Add click listener to marker and open info window */
     place.marker.addListener('click', function(){
@@ -157,10 +157,10 @@ var ViewModel = function() {
       contentString = '<h4>' + place.name + '</h4>\n<p>' + place.street + '</p>\n<p>' + place.city + '</p><a href= ' + place.url + '>' + place.url + '</a>';   
       /* Open info window and set its content */
       self.infowindow.setContent(contentString);
-      self.infowindow.open(self.googleMap, place.marker)
+      self.infowindow.open(self.googleMap, place.marker);
       setTimeout(function() {self.infowindow.open(null);}, 7000);
 
-    })
+    });
   });
 
   /* A observable array that will filter our list-view and markers */
@@ -191,13 +191,14 @@ var ViewModel = function() {
       place.marker.setVisible(true);
     });
   };
-}
+};
 function myMap() { 
 ko.applyBindings(new ViewModel());
 }
 function googleError(){
-  if (typeof(google) == null){
-    alert('Google maps is currerntly unavailable')
+  if (typeof(google) === null){
+    alert('Google maps is currerntly unavailable');
   }
 }
+
 
