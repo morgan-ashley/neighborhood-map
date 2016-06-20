@@ -4,9 +4,6 @@ A single page application featuring the Alamo Square neighborhood of San Francis
 [Try Neighborhood Map on Plunker](https://plnkr.co/edit/Jy1VQAuKCKIDGQ8cJR53)
 
 
-![alt tag](https://cloud.githubusercontent.com/assets/6165320/12572182/85167538-c39d-11e5-9d6d-5e48a8775aa0.gif
-)
-
 ###To-Do###
 * Implement build process(Gulp)
 * Toggle hamburger menu on mobile(portrait mode)
