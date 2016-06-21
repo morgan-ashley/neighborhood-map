@@ -2,7 +2,7 @@ var infowindow, map, marker;
 
 var initialLocations = [{
     "name": "Nopa",
-    "latLng": {lat: 37.775188, lng: -122.437461},
+    "latLng": {lat: 37.77494821103535, lng: -122.43765838868448},
 },  
 {
     "name": "Bar Crudo",
